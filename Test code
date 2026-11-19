@@ -1,0 +1,28 @@
+#include <dht.h> 
+#define DHTPIN 2       // Include the DHT11 library // Pin connected to DHT11 DATA pin
+#define RED_LED 10     // Pin connected to Red LED
+#define GREEN_LED 9   // Pin connected to Green LED 
+#define THRESHOLD 29   // Temperature threshold in °C 
+dht DHT;              //// Create a DHT object
+void setup() 
+{  Serial.begin(9600); 
+   pinMode(RED_LED, OUTPUT);
+   pinMode(GREEN_LED, OUTPUT);
+}
+void loop() { 
+// Read data from DHT11 
+int readData = DHT.read11(DHTPIN); 
+// Store the temperature and humidity values 
+float t = DHT.temperature; 
+float h = DHT.humidity;
+/ Print values to Serial Monitor 
+Serial.print("Temperature = "); 
+Serial.print(t); 
+Serial.print("°C | "); 
+Serial.print((t * 9.0) / 5.0 + 32.0); 
+// Celsius to Fahrenheit
+Serial.println("°F");
+Serial.print("Humidity = "); 
+Serial.print(h); 
+Serial.println("%");
+Serial.println(""); 
